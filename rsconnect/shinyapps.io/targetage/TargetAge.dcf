@@ -1,0 +1,13 @@
+name: TargetAge
+title: TargetAge
+username:
+account: targetage
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4390524
+bundleId: 4964530
+url: https://targetage.shinyapps.io/TargetAge/
+when: 1629925402.54581
+lastSyncTime: 1629925402.54589
+asMultiple: FALSE
+asStatic: FALSE
