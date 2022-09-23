@@ -265,7 +265,7 @@ brks <- seq(0.05, 1, 0.05)
 clrs <- colorRampPalette(c("white", "#6baed6"))(21)
 
 table_explanation1 <- "The table below shows each target's Open Targets genetic association score with each age-related diseases/trait, as well as the multimorbidity count (total number of associated morbidities). Icons indicate any Hallmarks of Ageing that the target is involved in according to its GO annotations." 
-table_explanation2 <- "Select a target for more detailed information, and to view a structure if one is available. Much more information about a target and its association with disease, including drug and clinical trial information, can be found via the link to its Open Targets Platform profile on the right."
+table_explanation2 <- "Select a target for more detailed information. Much more information about a target and its association with disease, including drug and clinical trial information, can be found via the link to its Open Targets Platform profile on the right."
 genage_explanation <- p(a(target="_blank", href = "https://genomics.senescence.info/genes/human.html", "GenAge"), " is an expert-curated database of age-related genes. The GenAge ID number links to the GenAge entry for relevant targets, and icons indicate whether animal model orthologs have experimental evidence of pro-longevity or anti-longevity effects.")
 cellage_explanation <- p(a(target="_blank", href = "https://genomics.senescence.info/cells/", "CellAge"), " is a manually-curated database of genes associated with cell senescence through genetic experiments in human cell types. The icons indicate whether the gene was found to induce or inhibit senescence.")
 all_explanation <- "All targets with genetic association (>= 0.5) with (by default) at least two age-related diseases of interest. Adjust filters using the dropdown options above."
@@ -401,18 +401,18 @@ ui <- dashboardPage(
                                  "Select a target to see more detailed information.",
                                  tabsetPanel(
                                      tabPanel("Details",
-                                              tableOutput("targetdetails")),
-                                      ### View top hit PDB structure
-                                      tabPanel(
-                                          "Structure",
-                                          br(),
+                                              tableOutput("targetdetails"))
+                                      ### View top hit PDB structure ## removed because no longer available
+                                      #tabPanel(
+                                      #    "Structure",
+                                      #    br(),
                                      #     h3(textOutput("pdb_code")),
                                      #     br(),
                                      #     #  actionButton("fitButton", "Reset position"),
                                      #     actionButton('pdb_go', 'Load PDB'),
                                      #     hr(),
                                      #     nglShinyOutput('nglShiny')
-                                      )
+                                     # )
                                  ), # end of tabset panel
                                  footer = htmlOutput("open_ot"),
                                  style = "overflow-y:scroll; max-height: 130vh"
