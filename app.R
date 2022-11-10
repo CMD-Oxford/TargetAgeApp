@@ -1,17 +1,20 @@
-library(shiny)
-library(shinyjs)
-library(shinyWidgets)
-library(shinydashboard)
-library(tidyverse)
-library(DT)
-library(plotly)
-library(reactable)
-library(ggtext)
-library(ggiraph)
-library(visNetwork)
-library(igraph)
-#library(shinyFiles)   ### For PDB viewer
-#library(nglShiny)     ### For PDB viewer
+suppressPackageStartupMessages({
+  library(shiny)
+  library(shinyjs)
+  library(shinyWidgets)
+  library(shinydashboard)
+  library(tidyverse)
+  library(DT)
+  library(plotly)
+  library(reactable)
+  library(ggtext)
+  library(ggiraph)
+  library(visNetwork)
+  library(igraph)
+  #library(shinyFiles)   ### For PDB viewer
+  #library(nglShiny)     ### For PDB viewer
+})
+
 
 ## Prepared data
 load("data/prepared_table.Rda")  # Target annotations
@@ -343,7 +346,7 @@ ui <- dashboardPage(
                                      # Button to show filter settings ----
                                      circle = TRUE,
                                      status = "danger",
-                                     icon = icon("sliders"),
+                                     icon = icon("sliders-h"),
                                      width = "50%",
                                      tooltip = tooltipOptions(title = "Filter targets and morbidities")
                                  ),
@@ -576,6 +579,7 @@ server <- function(input, output, session) {
     }
     
     output$cluster_table <- reactable::renderReactable({
+      if(!is.null(selected$tbl_genes)){
       selected$tbl_genes %>%  
         select(-id) %>% 
         mutate(hasColoc = ifelse(hasColoc == TRUE, 'Yes', NA)) %>% 
@@ -658,7 +662,7 @@ server <- function(input, output, session) {
                   theme = reactableTheme(
                     rowSelectedStyle = list(backgroundColor = "#eee", boxShadow = "inset 2px 0 0 0 #ffa62d")
                   ))
-    })
+    }})
     
     
     selected <- reactiveValues()
